@@ -6,6 +6,10 @@ from httplib import HTTPConnection
 from base64 import b64encode
 from time import time
 from datetime import datetime
+from os import chdir
+from os import path
+
+chdir(path.dirname(path.realpath(__file__)))
 
 config_file = open("config.json")
 config = json.load(config_file)
