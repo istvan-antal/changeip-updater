@@ -10,7 +10,7 @@ from os import chdir
 from os import path
 
 CONFIG_JSON_PATH = "config.json"
-IP_FILE_PATH = "/var/log/IP"
+IP_FILE_PATH = "current_ip"
 
 chdir(path.dirname(path.realpath(__file__)))
 
