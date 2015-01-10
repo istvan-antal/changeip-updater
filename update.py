@@ -31,9 +31,12 @@ data = res.read()
 
 current_ip = data.split("\n")[0]
 
-ip_file = open(IP_FILE_PATH)
-old_ip = ip_file.read().strip()
-ip_file.close()
+try:
+    ip_file = open(IP_FILE_PATH)
+    old_ip = ip_file.read().strip()
+    ip_file.close()
+except IOError:
+    old_ip = ""
 
 if current_ip != old_ip:
     print "Old ip: " + old_ip
@@ -47,7 +50,7 @@ if current_ip != old_ip:
     data = res.read()
     print "Response: " + data
 
-    f = open(IP_FILE_PATH, "w")
+    f = open(IP_FILE_PATH, "w+")
     f.write(current_ip)
     f.close()
 else:
