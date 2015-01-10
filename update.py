@@ -9,9 +9,12 @@ from datetime import datetime
 from os import chdir
 from os import path
 
+CONFIG_JSON_PATH = "config.json"
+IP_FILE_PATH = "/var/log/IP"
+
 chdir(path.dirname(path.realpath(__file__)))
 
-config_file = open("config.json")
+config_file = open(CONFIG_JSON_PATH)
 config = json.load(config_file)
 config_file.close()
 
@@ -28,7 +31,7 @@ data = res.read()
 
 current_ip = data.split("\n")[0]
 
-ip_file = open("/var/log/IP")
+ip_file = open(IP_FILE_PATH)
 old_ip = ip_file.read().strip()
 ip_file.close()
 
@@ -44,7 +47,7 @@ if current_ip != old_ip:
     data = res.read()
     print "Response: " + data
 
-    f = open("/var/log/IP", "w")
+    f = open(IP_FILE_PATH, "w")
     f.write(current_ip)
     f.close()
 else:
